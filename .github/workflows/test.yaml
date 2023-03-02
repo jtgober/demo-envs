@@ -10,23 +10,25 @@ on:
 
 jobs:
   deploy:
+    timeout-minutes: 60
     runs-on: ubuntu-latest
-    environment:
-      # Define default environment
-      name: production
     steps:
-      - name: Check branch and set environment
-        if: github.ref == 'refs/heads/main'
-        run: "echo 'Setting environment to main' && echo 'name: main'"
-      - name: Check branch and set environment
-        if: github.ref == 'refs/heads/dev'
-        run: "echo 'Setting environment to dev' && echo 'name: dev'"
-      - name: Check branch and set environment
-        if: github.ref == 'refs/heads/release'
-        run: "echo 'Setting environment to release' && echo 'name: release'"
-      - name: Check branch and set environment
-        if: github.ref == 'refs/heads/qa'
-        run: "echo 'Setting environment to qa' && echo 'name: qa'"
-      - name: run a test
-        run: npm test
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - name: Check branch and set environment
+      if: github.ref == 'refs/heads/main'
+      run: "echo 'Setting environment to main' && echo 'name: main'"
+    - name: Check branch and set environment
+      if: github.ref == 'refs/heads/dev'
+      run: "echo 'Setting environment to dev' && echo 'name: dev'"
+    - name: Check branch and set environment
+      if: github.ref == 'refs/heads/release'
+      run: "echo 'Setting environment to release' && echo 'name: release'"
+    - name: Check branch and set environment
+      if: github.ref == 'refs/heads/qa'
+      run: "echo 'Setting environment to qa' && echo 'name: qa'"
+    - name: run a test
+      run: npm test
 
