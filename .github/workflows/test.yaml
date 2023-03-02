@@ -27,4 +27,6 @@ jobs:
       - name: Check branch and set environment
         if: github.ref == 'refs/heads/qa'
         run: "echo 'Setting environment to qa' && echo 'name: qa'"
+      - name: run a test
+        run: npm test
 
