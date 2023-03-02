@@ -1,5 +1,4 @@
-import * as dotenv from 'dotenv'
-dotenv.config()
+
 switch (process.env) {
     case process.env.QA:
         console.log('running in the QA ENV');
