@@ -17,19 +17,14 @@ jobs:
     steps:
       - name: Check branch and set environment
         if: github.ref == 'refs/heads/main'
-          export ENVIRONMENT="prod"
         run: "echo 'Setting environment to main' && echo 'name: main'"
       - name: Check branch and set environment
         if: github.ref == 'refs/heads/dev'
-          export ENVIRONMENT="dev"
         run: "echo 'Setting environment to dev' && echo 'name: dev'"
       - name: Check branch and set environment
         if: github.ref == 'refs/heads/release'
-          export ENVIRONMENT="release"
         run: "echo 'Setting environment to release' && echo 'name: release'"
       - name: Check branch and set environment
         if: github.ref == 'refs/heads/qa'
-          export ENVIRONMENT="qa"
         run: "echo 'Setting environment to qa' && echo 'name: qa'"
-      - name: Deploy to environment
-        run: npm run test
+
